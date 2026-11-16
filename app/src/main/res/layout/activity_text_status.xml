@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/text_status_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/status_primary_dark_green">
+
+    <!-- Top Action Bar -->
+    <LinearLayout
+        android:id="@+id/text_status_top_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_text_close"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Close text status"
+            android:padding="12dp"
+            android:src="@drawable/ic_status_close"
+            app:tint="@color/white" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btn_text_emoji"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Insert emoji"
+            android:padding="12dp"
+            android:src="@drawable/ic_status_emoji"
+            app:tint="@color/white" />
+
+        <Button
+            android:id="@+id/btn_text_font"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:text="Aa"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_text_palette"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Change background color"
+            android:padding="12dp"
+            android:src="@drawable/ic_status_palette"
+            app:tint="@color/white" />
+    </LinearLayout>
+
+    <!-- Main Full-Screen Text Input -->
+    <EditText
+        android:id="@+id/et_text_status"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="@string/status_text_hint"
+        android:inputType="textCapSentences|textMultiLine"
+        android:lineSpacingMultiplier="1.15"
+        android:maxLength="700"
+        android:paddingHorizontal="28dp"
+        android:paddingVertical="24dp"
+        android:textColor="@color/white"
+        android:textColorHint="#99FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/text_emoji_tray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_status_top_bar" />
+
+    <!-- Font Label Pill -->
+    <TextView
+        android:id="@+id/tv_font_style_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_status_pill_dark"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:text="Sans • Tap Aa to switch font"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/text_emoji_tray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Emoji Quick Tray -->
+    <HorizontalScrollView
+        android:id="@+id/text_emoji_tray"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:background="#44000000"
+        android:scrollbars="none"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/text_status_bottom_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/text_emoji_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp" />
+    </HorizontalScrollView>
+
+    <!-- Bottom Privacy Pill + Share FAB -->
+    <LinearLayout
+        android:id="@+id/text_status_bottom_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#33000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/btn_text_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_status_pill_dark"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="14dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_status_lock"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_text_privacy_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Status (Contacts)"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_text_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/status_editor_share"
+            app:backgroundTint="@color/status_primary_green"
+            app:srcCompat="@drawable/ic_status_send"
+            app:tint="@color/white" />
+    </LinearLayout>
+
+    <!-- Posting Spinner Overlay -->
+    <FrameLayout
+        android:id="@+id/text_upload_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#88000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/status_primary_green" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

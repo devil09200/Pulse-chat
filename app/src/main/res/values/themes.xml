@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MyApplication" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/status_primary_dark_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/status_primary_green</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/status_background</item>
+        <item name="colorOnSurface">@color/status_primary_text</item>
+        <item name="android:windowBackground">@color/status_primary_dark_green</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.PulseChat.FullscreenStatus" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/status_primary_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/status_secondary_green</item>
+        <item name="android:windowBackground">@color/status_viewer_bg</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.PulseChat.StatusSubscreen" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/status_primary_dark_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/status_primary_green</item>
+        <item name="android:windowBackground">@color/status_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

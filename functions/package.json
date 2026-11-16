@@ -1,0 +1,16 @@
+{
+  "name": "pulsechat-call-notifications",
+  "version": "1.0.0",
+  "description": "Firebase Cloud Functions for PulseChat incoming WebRTC call FCM push notifications",
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "lint": "node --check index.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.0.1",
+    "firebase-functions": "^6.1.0"
+  }
+}

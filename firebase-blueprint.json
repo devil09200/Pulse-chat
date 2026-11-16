@@ -1,0 +1,258 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private owner-only user profile and application settings.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID of the user." },
+        "displayName": { "type": "string", "description": "Display name shown in profile and chats." },
+        "about": { "type": "string", "description": "User status bio text." },
+        "phoneNumber": { "type": "string", "description": "Verified phone number (PII)." },
+        "countryCode": { "type": "string", "description": "Selected country calling code." },
+        "email": { "type": "string", "description": "Google account email (PII)." },
+        "photoBase64": { "type": "string", "description": "Optional compressed profile avatar." },
+        "avatarColorHex": { "type": "string", "description": "Hex color for fallback monogram avatar." },
+        "themeMode": { "type": "string", "enum": ["system", "light", "dark"] },
+        "notificationsEnabled": { "type": "boolean" },
+        "readReceiptsEnabled": { "type": "boolean" },
+        "lastSeenVisibility": { "type": "string", "enum": ["everyone", "contacts", "nobody"] },
+        "statusPrivacy": { "type": "string", "enum": ["everyone", "contacts", "contacts_except", "only_share_with", "private"] },
+        "statusExcludedIds": { "type": "array", "description": "Contact UIDs excluded from status updates." },
+        "statusAllowedIds": { "type": "array", "description": "Specific contact UIDs allowed to see status updates." },
+        "appLanguage": { "type": "string" },
+        "securityLockEnabled": { "type": "boolean" },
+        "isOnline": { "type": "boolean" },
+        "lastSeenText": { "type": "string" },
+        "fcmToken": { "type": "string", "description": "Optional Firebase Cloud Messaging registration token for incoming call notifications." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp" }
+      },
+      "required": [
+        "userId", "displayName", "about", "phoneNumber", "countryCode", "email",
+        "themeMode", "notificationsEnabled", "readReceiptsEnabled", "lastSeenVisibility",
+        "statusPrivacy", "appLanguage", "securityLockEnabled", "isOnline", "lastSeenText",
+        "createdAt", "updatedAt"
+      ]
+    },
+    "PublicProfile": {
+      "title": "PublicProfile",
+      "description": "Non-PII discoverable contact card for messaging.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "about": { "type": "string" },
+        "avatarColorHex": { "type": "string" },
+        "photoBase64": { "type": "string" },
+        "discoverable": { "type": "boolean" },
+        "isOnline": { "type": "boolean" },
+        "lastSeenText": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "displayName", "about", "avatarColorHex", "discoverable",
+        "isOnline", "lastSeenText", "createdAt", "updatedAt"
+      ]
+    },
+    "Chat": {
+      "title": "Chat",
+      "description": "Direct or group conversation thread.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "isGroup": { "type": "boolean" },
+        "avatarColorHex": { "type": "string" },
+        "participantIds": { "type": "array" },
+        "createdBy": { "type": "string" },
+        "lastMessageText": { "type": "string" },
+        "lastMessageType": { "type": "string", "enum": ["text", "image", "voice", "call"] },
+        "lastMessageSenderId": { "type": "string" },
+        "lastMessageStatus": { "type": "string", "enum": ["sent", "delivered", "read"] },
+        "pinnedBy": { "type": "array" },
+        "mutedBy": { "type": "array" },
+        "unreadCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "title", "isGroup", "avatarColorHex", "participantIds", "createdBy",
+        "lastMessageText", "lastMessageType", "lastMessageSenderId", "lastMessageStatus",
+        "pinnedBy", "mutedBy", "unreadCount", "createdAt", "updatedAt"
+      ]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Real-time message inside a chat subcollection.",
+      "type": "object",
+      "properties": {
+        "chatId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "participantIds": { "type": "array" },
+        "text": { "type": "string" },
+        "mediaType": { "type": "string", "enum": ["text", "image", "voice"] },
+        "mediaBase64": { "type": "string" },
+        "voiceDurationSec": { "type": "integer" },
+        "status": { "type": "string", "enum": ["sent", "delivered", "read"] },
+        "readBy": { "type": "array" },
+        "replyToText": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "chatId", "senderId", "senderName", "participantIds", "text",
+        "mediaType", "mediaBase64", "voiceDurationSec", "status", "readBy",
+        "replyToText", "createdAt", "updatedAt"
+      ]
+    },
+    "StatusUpdate": {
+      "title": "StatusUpdate",
+      "description": "24-hour expiring text, photo, or video status update with Firebase Storage URL.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "avatarColorHex": { "type": "string" },
+        "mediaType": { "type": "string", "enum": ["text", "photo", "video"] },
+        "caption": { "type": "string" },
+        "mediaBase64": { "type": "string" },
+        "mediaUrl": { "type": "string", "description": "Firebase Storage HTTPS download URL." },
+        "storagePath": { "type": "string", "description": "Firebase Storage object path." },
+        "backgroundColorHex": { "type": "string" },
+        "fontStyle": { "type": "string", "enum": ["sans", "serif", "bold", "mono", "cursive"] },
+        "privacy": { "type": "string", "enum": ["everyone", "contacts", "contacts_except", "only_share_with", "private"] },
+        "visibleTo": { "type": "array" },
+        "viewedBy": { "type": "array" },
+        "expiresAt": { "type": "string", "format": "date-time", "description": "Automatic 24-hour expiration timestamp." },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "userName", "avatarColorHex", "mediaType", "caption",
+        "mediaBase64", "backgroundColorHex", "privacy", "visibleTo", "viewedBy",
+        "createdAt", "updatedAt"
+      ]
+    },
+    "Community": {
+      "title": "Community",
+      "description": "Community hub containing announcement channels and linked groups.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "avatarColorHex": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "memberIds": { "type": "array" },
+        "linkedChatIds": { "type": "array" },
+        "announcementText": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "name", "description", "avatarColorHex", "ownerId", "memberIds",
+        "linkedChatIds", "announcementText", "createdAt", "updatedAt"
+      ]
+    },
+    "CallSession": {
+      "title": "CallSession",
+      "description": "WebRTC voice/video call session signaling and call history log.",
+      "type": "object",
+      "properties": {
+        "callerId": { "type": "string" },
+        "callerName": { "type": "string" },
+        "callerPhotoBase64": { "type": "string" },
+        "callerAvatarColorHex": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "receiverName": { "type": "string" },
+        "participantIds": { "type": "array" },
+        "callType": { "type": "string", "enum": ["voice", "video"] },
+        "direction": { "type": "string", "enum": ["outgoing", "incoming", "missed"] },
+        "status": { "type": "string", "enum": ["calling", "ringing", "accepted", "connected", "rejected", "cancelled", "ended", "missed", "failed"] },
+        "connectionState": { "type": "string", "enum": ["new", "checking", "connected", "reconnecting", "disconnected", "failed", "closed"] },
+        "durationSec": { "type": "integer" },
+        "sdpOffer": { "type": "string" },
+        "sdpAnswer": { "type": "string" },
+        "failureReason": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time", "description": "Timestamp when receiver accepted or call started." },
+        "endedAt": { "type": "string", "format": "date-time", "description": "Timestamp when call ended." },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "callerId", "callerName", "receiverId", "receiverName", "participantIds",
+        "callType", "direction", "status", "connectionState", "durationSec",
+        "sdpOffer", "sdpAnswer", "createdAt", "updatedAt"
+      ]
+    },
+    "IceCandidateRecord": {
+      "title": "IceCandidateRecord",
+      "description": "WebRTC ICE candidate exchanged between call participants.",
+      "type": "object",
+      "properties": {
+        "callId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "participantIds": { "type": "array" },
+        "sdpMid": { "type": "string" },
+        "sdpMLineIndex": { "type": "integer" },
+        "candidate": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "callId", "senderId", "participantIds", "sdpMid", "sdpMLineIndex", "candidate", "createdAt"
+      ]
+    },
+    "PhoneDirectoryEntry": {
+      "title": "PhoneDirectoryEntry",
+      "description": "Privacy-preserving SHA-256 phone hash lookup entry for exact-match user discovery without exposing PII.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "avatarColorHex": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "avatarColorHex", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private user profile and app preferences."
+    },
+    "/public_profiles/{userId}": {
+      "schema": { "$ref": "#/entities/PublicProfile" },
+      "description": "Public discoverable contact profiles without PII."
+    },
+    "/chats/{chatId}": {
+      "schema": { "$ref": "#/entities/Chat" },
+      "description": "1-on-1 and group conversations."
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/Message" },
+      "description": "Messages belonging to a chat."
+    },
+    "/statuses/{statusId}": {
+      "schema": { "$ref": "#/entities/StatusUpdate" },
+      "description": "24-hour status updates and stories."
+    },
+    "/communities/{communityId}": {
+      "schema": { "$ref": "#/entities/Community" },
+      "description": "Communities and linked group chats."
+    },
+    "/call_sessions/{callId}": {
+      "schema": { "$ref": "#/entities/CallSession" },
+      "description": "WebRTC voice and video call sessions, signaling, and history."
+    },
+    "/call_sessions/{callId}/candidates/{candidateId}": {
+      "schema": { "$ref": "#/entities/IceCandidateRecord" },
+      "description": "WebRTC ICE candidates for an active call session."
+    },
+    "/phone_directory/{phoneHash}": {
+      "schema": { "$ref": "#/entities/PhoneDirectoryEntry" },
+      "description": "SHA-256 phone hash index for exact-match contact lookup."
+    }
+  }
+}

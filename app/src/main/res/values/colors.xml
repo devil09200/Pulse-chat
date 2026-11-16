@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Vice Messenger / PulseChat Status & Updates Palette -->
+    <color name="status_primary_dark_green">#FF075E54</color>
+    <color name="status_primary_green">#FF25D366</color>
+    <color name="status_secondary_green">#FF128C7E</color>
+    <color name="status_background">#FFFFFFFF</color>
+    <color name="status_primary_text">#FF111B21</color>
+    <color name="status_secondary_text">#FF667781</color>
+    <color name="status_divider">#FFE9EDEF</color>
+    <color name="status_unseen_ring">#FF25D366</color>
+    <color name="status_viewed_ring">#FFC4C9CC</color>
+    <color name="status_add_bg">#FFD9FDD3</color>
+    <color name="status_viewer_bg">#FF000000</color>
+    <color name="status_overlay_scrim">#88000000</color>
+    <color name="status_card_surface">#FFF7F8FA</color>
+
+    <!-- Vice Messenger Calling Palette -->
+    <color name="call_header_green">#FF075E54</color>
+    <color name="call_primary_green">#FF25D366</color>
+    <color name="call_secondary_green">#FF128C7E</color>
+    <color name="call_background">#FFFFFFFF</color>
+    <color name="call_main_text">#FF111B21</color>
+    <color name="call_secondary_text">#FF667781</color>
+    <color name="call_end_red">#FFEA4335</color>
+    <color name="call_control_surface">#FFE9EDEF</color>
+    <color name="call_dark_canvas">#FF0B141A</color>
+    <color name="call_video_control_bg">#66000000</color>
+    <color name="call_error_bg">#FFFCE8E6</color>
+</resources>

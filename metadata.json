@@ -1,0 +1,6 @@
+{
+  "name": "PulseChat",
+  "description": "Real-time messaging, status updates, communities, and calling application inspired by modern chat experiences with light and dark modes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
